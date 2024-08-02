@@ -1,14 +1,15 @@
 "use client";
-import { Products } from "@/data/products";
-import { useAppDispatch } from "@/redux/hooks";
+
+import Spinner from "@/components/Spinner";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, setTotal } from "@/redux/slice/cartSlice";
 import React from "react";
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Page = () => {
   const dispatch = useAppDispatch();
+  const { product, productLoading } = useAppSelector((state) => state.product);
 
-  const product = Products.find((product) => product._id === params.id)!;
-  // const { product, productLoading } = useAppSelector((state) => state.product);
+  console.log(product);
 
   const addCartHandle = () => {
     dispatch(
@@ -24,13 +25,13 @@ const Page = ({ params }: { params: { id: string } }) => {
     dispatch(setTotal());
   };
 
-  // if (productLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <Spinner />
-  //     </div>
-  //   );
-  // }
+  if (productLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
 
   console.log(product);
 

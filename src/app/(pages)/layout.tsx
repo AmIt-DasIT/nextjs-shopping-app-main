@@ -1,8 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-import React, { Suspense, useEffect } from "react";
-import Loading from "./loading";
+import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useAppDispatch } from "@/redux/hooks";
@@ -31,10 +30,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Header />
-        {children}
-      </Suspense>
+      <Header />
+      {children}
     </>
   );
 };

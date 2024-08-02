@@ -4,6 +4,7 @@ import useDeviceSize from "@/lib/useDeviceSize";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, setTotal } from "@/redux/slice/cartSlice";
+import { setProduct } from "@/redux/slice/productSlice";
 
 const Cards = ({ product }: { product: IProduct }) => {
   const { width } = useDeviceSize();
@@ -28,7 +29,7 @@ const Cards = ({ product }: { product: IProduct }) => {
   };
 
   return (
-    <Link href={`/${_id}`}>
+    <Link href={`/${_id}`} onClick={() => dispatch(setProduct(product))}>
       <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
         <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
           <img
@@ -46,9 +47,7 @@ const Cards = ({ product }: { product: IProduct }) => {
           </h5>
           <div className="mt-2 mb-5 flex items-center justify-between">
             <p>
-              <span className="text-3xl font-bold text-slate-900">
-                {price}
-              </span>
+              <span className="text-3xl font-bold text-slate-900">{price}</span>
               <span className="text-sm text-slate-900 line-through">
                 {discountPrice && discountPrice}
               </span>

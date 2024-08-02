@@ -44,7 +44,7 @@ export interface IAllProducts {
   page: number;
   totalPages: number;
   totalProducts: number;
-  products: IProduct[];
+  products: IProduct[] | null;
 }
 
 export interface Cart {

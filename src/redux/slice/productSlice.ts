@@ -13,7 +13,7 @@ const initialState: InitialState = {
     page: 0,
     totalPages: 0,
     totalProducts: 0,
-    products: [],
+    products: null,
   },
   product: {
     _id: "",
